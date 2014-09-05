@@ -264,6 +264,40 @@ $.widget( "ui.button", {
 		}
 	},
 
+	_elementsFromClassKey: function( classKey ) {
+		var widget = this.widget();
+
+		switch( classKey ) {
+			case "ui-button":
+				return widget;
+
+			// button child elements
+			case "ui-button-text":
+
+			// The following two classes are not declared among the classes option keys, but they
+			// are used in the code
+			case "ui-button-icon-primary":
+			case "ui-button-icon-secondary":
+				return widget.children( "." + classKey );
+
+			// If the following classes are not present on the widget we chain up.
+			case "ui-button-icons-only":
+			case "ui-button-icon-only":
+			case "ui-button-text-icons":
+			case "ui-button-text-icon-primary":
+			case "ui-button-text-icon-secondary":
+			case "ui-button-text-only":
+				if ( widget.hasClass( classKey ) ) {
+					return widget;
+				}
+				break;
+			default:
+				break;
+		}
+
+		return this._superApply( arguments );
+	},
+
 	_setOption: function( key, value ) {
 		this._super( key, value );
 		if ( key === "disabled" ) {
@@ -372,6 +406,12 @@ $.widget( "ui.buttonset", {
 
 	_init: function() {
 		this.refresh();
+	},
+
+	_elementsFromClassKey: function( classKey ) {
+		return ( classKey === "ui-buttonset" ) ?
+			this.element :
+			this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {

@@ -57,13 +57,13 @@ $.widget( "ui.button", {
 	options: {
 		classes: {
 			"ui-button": "ui-corner-all",
-			"ui-button-text": null,
-			"ui-button-icons-only": null,
-			"ui-button-icon-only": null,
-			"ui-button-text-icons": null,
-			"ui-button-text-icon-primary": null,
-			"ui-button-text-icon-secondary": null,
-			"ui-button-text-only": null
+			"ui-button-text": "",
+			"ui-button-icons-only": "",
+			"ui-button-icon-only": "",
+			"ui-button-text-icons": "",
+			"ui-button-text-icon-primary": "",
+			"ui-button-text-icon-secondary": "",
+			"ui-button-text-only": ""
 		},
 		disabled: null,
 		text: true,

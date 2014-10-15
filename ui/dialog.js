@@ -34,7 +34,7 @@ $.widget( "ui.dialog", {
 	_elementsFromClassKey: function( classKey ) {
 		switch( classKey ) {
 			case "ui-dialog":
-				return this.widget();
+				return this.uiDialog;
 			case "ui-dialog-content":
 				return this.element;
 			case "ui-dialog-titlebar":
@@ -42,6 +42,22 @@ $.widget( "ui.dialog", {
 			case "ui-dialog-titlebar-close":
 				if ( this.uiDialogTitlebar.hasClass( classKey ) ) {
 					return this.uiDialogTitlebar;
+				}
+			case "ui-dialog-title":
+				return this.uiDialogTitle;
+			case "ui-dialog-buttons":
+			case "ui-dialog-dragging":
+			case "ui-dialog-resizing":
+				if ( this.uiDialog.hasClass( classKey ) ) {
+					return this.uiDialog;
+				}
+			case "ui-dialog-buttonset":
+				return this.uiButtonSet;
+			case "ui-dialog-buttonpane":
+				return this.uiDialogButtonPane;
+			case "ui-dialog-overlay":
+				if ( this.overlay ) {
+					return this.overlay
 				}
 			default:
 				return this._superApply( arguments );
@@ -53,16 +69,16 @@ $.widget( "ui.dialog", {
 		buttons: [],
 		classes: {
 			"ui-dialog": "ui-corner-all",
-			"ui-dialog-content": null,
+			"ui-dialog-content": "",
 			"ui-dialog-titlebar": "ui-corner-all",
-			"ui-dialog-titlebar-close": null,
-			"ui-dialog-title": null,
-			"ui-dialog-buttons": null,
-			"ui-dialog-buttonpane": null,
-			"ui-dialog-buttonset": null,
-			"ui-dialog-dragging": null,
-			"ui-dialog-resizing": null,
-			"ui-widget-overlay": null
+			"ui-dialog-titlebar-close": "",
+			"ui-dialog-title": "",
+			"ui-dialog-buttons": "",
+			"ui-dialog-buttonpane": "",
+			"ui-dialog-buttonset": "",
+			"ui-dialog-dragging": "",
+			"ui-dialog-resizing": "",
+			"ui-widget-overlay": ""
 		},
 		closeOnEscape: true,
 		closeText: "Close",

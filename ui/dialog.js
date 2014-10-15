@@ -31,6 +31,22 @@
 
 $.widget( "ui.dialog", {
 	version: "@VERSION",
+	_elementsFromClassKey: function( classKey ) {
+		switch( classKey ) {
+			case "ui-dialog":
+				return this.widget();
+			case "ui-dialog-content":
+				return this.element;
+			case "ui-dialog-titlebar":
+				return this.uiDialogTitlebar;
+			case "ui-dialog-titlebar-close":
+				if ( this.uiDialogTitlebar.hasClass( classKey ) ) {
+					return this.uiDialogTitlebar;
+				}
+			default:
+				return this._superApply( arguments );
+		}
+	},
 	options: {
 		appendTo: "body",
 		autoOpen: true,
@@ -395,8 +411,6 @@ $.widget( "ui.dialog", {
 	},
 
 	_createTitlebar: function() {
-		var uiDialogTitle;
-
 		this.uiDialogTitlebar = $( "<div>" )
 			.addClass( this._classes( "ui-dialog-titlebar") + " ui-widget-header ui-helper-clearfix" )
 			.prependTo( this.uiDialog );
@@ -432,14 +446,14 @@ $.widget( "ui.dialog", {
 			}
 		});
 
-		uiDialogTitle = $( "<span>" )
+		this.uiDialogTitle = $( "<span>" )
 			.uniqueId()
 			.addClass( this._classes( "ui-dialog-title" ) )
 			.prependTo( this.uiDialogTitlebar );
-		this._title( uiDialogTitle );
+		this._title( this.uiDialogTitle );
 
 		this.uiDialog.attr({
-			"aria-labelledby": uiDialogTitle.attr( "id" )
+			"aria-labelledby": this.uiDialogTitle.attr( "id" )
 		});
 	},
 

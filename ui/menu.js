@@ -350,22 +350,18 @@ return $.widget( "ui.menu", {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
-			case "ui-menu":
-				return this.element;
+		switch ( classKey ) {
 			case "ui-menu-icons":
-				if( this.element.hasClass( "ui-menu-icons" ) ) {
-					return this.element;
+				if ( !this.element.hasClass( "ui-menu-icons" ) ) {
+					return $();
 				}
+				break;
 			case "ui-menu-icon":
-				return this.element.find( "ui-menu-icon" );
 			case "ui-menu-item":
-				return this.element.find( "ui-menu-items" );
 			case "ui-menu-divider":
-				return this.element.find( "ui-menu-divider" );
-			default:
-				return this._superApply( arguments );
+				return this.element.find( classKey );
 		}
+		return this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {

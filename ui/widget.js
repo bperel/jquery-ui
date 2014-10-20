@@ -369,7 +369,11 @@ $.Widget.prototype = {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		return $();
+		if ( this.options.classes.indexOf( classKey ) !== -1 ) {
+			return this.element;
+		} else {
+			return $();
+		}
 	},
 
 	_setOption: function( key, value ) {

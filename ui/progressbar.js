@@ -100,26 +100,26 @@ return $.widget( "ui.progressbar", {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
-			case "ui-progressbar":
-				return this.element;
+		switch ( classKey ) {
 			case "ui-progressbar-value":
 				return this.valueDiv;
-			case "ui-progressbar-overlay":
-				if ( this.overlay ) {
-					return this.overlay;
-				}
-			case "ui-progressbar-indeterminate":
-				if ( !this.value ) {
-					return this.element
-				}
 			case "ui-progressbar-complete":
 				if ( this.valueDiv.hasClass( classKey ) ) {
 					return this.valueDiv;
 				}
-			default:
-				return this._superApply( arguments );
+				break;
+			case "ui-progressbar-overlay":
+				if ( this.overlay ) {
+					return this.overlay;
+				}
+				break;
+			case "ui-progressbar-indeterminate":
+				if ( this.value ) {
+					return $();
+				}
+				break;
 		}
+		return this._superApply( arguments );
 	},
 
 	_setOptions: function( options ) {

@@ -335,23 +335,17 @@ $.widget( "ui.autocomplete", {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
+		switch ( classKey ) {
 			case "ui-autocomplete":
 				return this.menu.element;
-			case "ui-autocomplete-input":
-				return this.element;
-
-			// If the following class is not present on the widget, we chain up.
 			case "ui-autocomplete-loading":
-				if ( this.element.hasClass( "ui-autocomplete-loading" ) ) {
-					return this.element;
+				if ( !this.element.hasClass( "ui-autocomplete-loading" ) ) {
+					return $();
 				}
 				break;
 			default:
-				break;
+				return this._superApply( arguments );
 		}
-
-		return this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {

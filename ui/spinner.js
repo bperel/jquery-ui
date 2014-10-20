@@ -378,9 +378,7 @@ return $.widget( "ui.spinner", {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
-			case "ui-spinner-input":
-				return this.element;
+		switch ( classKey ) {
 			case "ui-spinner":
 				return this.uiSpinner;
 			case "ui-spinner-up":

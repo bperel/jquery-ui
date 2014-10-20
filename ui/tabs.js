@@ -276,13 +276,12 @@ return $.widget( "ui.tabs", {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
-			case "ui-tabs":
-				return this.element;
+		switch ( classKey ) {
 			case "ui-tabs-collapsible":
-				if ( this.options.collapsible ) {
-					return this.element;
+				if ( !this.options.collapsible ) {
+					return $();
 				}
+				break;
 			case "ui-tabs-active":
 				return this.active;
 			case "ui-tabs-nav":
@@ -294,12 +293,12 @@ return $.widget( "ui.tabs", {
 			case "ui-tabs-panel":
 				return this.panels;
 			case "ui-tabs-loading":
-				if( this.tab.hasClass( classKey ) ) {
+				if ( this.tab.hasClass( classKey ) ) {
 					return this.tab;
 				}
-			default:
-				return this._superApply( arguments );
+				break;
 		}
+		return this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {

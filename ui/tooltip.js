@@ -109,13 +109,12 @@ $.widget( "ui.tooltip", {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
+		switch ( classKey ) {
 			case "ui-tooltip":
 			case "ui-tooltip-title":
 				return this.tooltips;
-			default:
-				return this._superApply( arguments );
 		}
+		return $();
 	},
 
 	_setOption: function( key, value ) {

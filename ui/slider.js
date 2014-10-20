@@ -428,22 +428,19 @@ return $.widget( "ui.slider", $.ui.mouse, {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
-			case "ui-slider":
-				return this.element;
+		switch ( classKey ) {
 			case "ui-slider-handle":
 				return this.handles;
+			case "ui-slider-range-min":
 			case "ui-slider-range":
-				if ( this.options.range ) {
+				if ( this.range ) {
 					return this.range;
 				}
-			case "ui-slider-range-min":
-				return this.range;
+				break;
 			case "ui-slider-" + this.options.orientation:
 				return this.element;
-			default:
-				return this._superApply( arguments );
 		}
+		return this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {

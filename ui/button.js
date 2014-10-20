@@ -267,7 +267,7 @@ $.widget( "ui.button", {
 	_elementsFromClassKey: function( classKey ) {
 		var widget = this.widget();
 
-		switch( classKey ) {
+		switch ( classKey ) {
 			case "ui-button":
 				return widget;
 
@@ -292,10 +292,9 @@ $.widget( "ui.button", {
 				}
 				break;
 			default:
-				break;
+				return this._superApply( arguments );
 		}
 
-		return this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {
@@ -406,12 +405,6 @@ $.widget( "ui.buttonset", {
 
 	_init: function() {
 		this.refresh();
-	},
-
-	_elementsFromClassKey: function( classKey ) {
-		return ( classKey === "ui-buttonset" ) ?
-			this.element :
-			this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {

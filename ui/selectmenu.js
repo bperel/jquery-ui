@@ -35,10 +35,10 @@ return $.widget( "ui.selectmenu", {
 			"ui-selectmenu-button": "",
 			"ui-selectmenu-button-open": "ui-corner-top",
 			"ui-selectmenu-button-closed": "ui-corner-all",
-			"ui-selectmenu-text": null,
-			"ui-selectmenu-menu": null,
-			"ui-selectmenu-optgroup": null,
-			"ui-selectmenu-open": null
+			"ui-selectmenu-text": "",
+			"ui-selectmenu-menu": "",
+			"ui-selectmenu-optgroup": "",
+			"ui-selectmenu-open": ""
 		},
 		disabled: null,
 		icons: {
@@ -464,17 +464,19 @@ return $.widget( "ui.selectmenu", {
 	},
 
 	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
+		switch ( classKey ) {
 			case "ui-selectmenu-button":
 				return this.button;
 			case "ui-selectmenu-button-open":
 				if ( this.isOpen ) {
 					return this.button;
 				}
+				break;
 			case "ui-selectmenu-button-closed":
 				if ( !this.isOpen ) {
 					return this.button;
 				}
+				break;
 			case "ui-selectmenu-text":
 				return this.buttonText;
 			case "ui-selectmenu-menu":
@@ -485,9 +487,9 @@ return $.widget( "ui.selectmenu", {
 				if ( this.isOpen ) {
 					return this.menuWrap;
 				}
-			default:
-				return this._superApply( arguments );
+				break;
 		}
+		return this._superApply( arguments );
 	},
 
 	_setOption: function( key, value ) {

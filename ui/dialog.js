@@ -31,38 +31,6 @@
 
 $.widget( "ui.dialog", {
 	version: "@VERSION",
-	_elementsFromClassKey: function( classKey ) {
-		switch( classKey ) {
-			case "ui-dialog":
-				return this.uiDialog;
-			case "ui-dialog-content":
-				return this.element;
-			case "ui-dialog-titlebar":
-				return this.uiDialogTitlebar;
-			case "ui-dialog-titlebar-close":
-				if ( this.uiDialogTitlebar.hasClass( classKey ) ) {
-					return this.uiDialogTitlebar;
-				}
-			case "ui-dialog-title":
-				return this.uiDialogTitle;
-			case "ui-dialog-buttons":
-			case "ui-dialog-dragging":
-			case "ui-dialog-resizing":
-				if ( this.uiDialog.hasClass( classKey ) ) {
-					return this.uiDialog;
-				}
-			case "ui-dialog-buttonset":
-				return this.uiButtonSet;
-			case "ui-dialog-buttonpane":
-				return this.uiDialogButtonPane;
-			case "ui-dialog-overlay":
-				if ( this.overlay ) {
-					return this.overlay
-				}
-			default:
-				return this._superApply( arguments );
-		}
-	},
 	options: {
 		appendTo: "body",
 		autoOpen: true,
@@ -676,6 +644,39 @@ $.widget( "ui.dialog", {
 		if ( !isVisible ) {
 			this.uiDialog.hide();
 		}
+	},
+
+	_elementsFromClassKey: function( classKey ) {
+		switch ( classKey ) {
+			case "ui-dialog":
+				return this.uiDialog;
+			case "ui-dialog-resizing":
+				if ( this.uiDialog.hasClass( classKey ) ) {
+					return this.uiDialog;
+				}
+				break;
+			case "ui-dialog-titlebar":
+				return this.uiDialogTitlebar;
+			case "ui-dialog-titlebar-close":
+				if ( this.uiDialogTitlebar.hasClass( classKey ) ) {
+					return this.uiDialogTitlebar;
+				}
+				break;
+			case "ui-dialog-title":
+				return this.uiDialogTitle;
+			case "ui-dialog-buttons":
+			case "ui-dialog-dragging":
+			case "ui-dialog-buttonset":
+				return this.uiButtonSet;
+			case "ui-dialog-buttonpane":
+				return this.uiDialogButtonPane;
+			case "ui-dialog-overlay":
+				if ( this.overlay ) {
+					return this.overlay;
+				}
+				break;
+		}
+		return this._superApply( arguments );
 	},
 
 	_setOptions: function( options ) {
